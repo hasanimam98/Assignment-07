@@ -1,5 +1,5 @@
 import { FaPlus } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FriendModal from "./FriendModal";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
