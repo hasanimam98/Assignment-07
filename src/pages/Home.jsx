@@ -74,13 +74,23 @@ import Footer from "./Footer";
 const Home = () => {
   const [friends, setFriends] = useState([]);
   const [selectedFriend, setSelectedFriend] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
   fetch("/friends.json")
     .then((res) => res.json())
-    .then((data) => setFriends(data));
+    .then((data) => {
+      setFriends(data);
+      setLoading(false);
+    });
 }, []);
-
+if (loading) {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-12 h-12 border-4 border-green-700 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+}
   return (
     <>
       <Navbar />
