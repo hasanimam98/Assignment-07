@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -9,6 +10,7 @@ import {
   FaTrash,
   FaEdit,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const FriendDetails = () => {
   const { id } = useParams();
@@ -168,20 +170,29 @@ const FriendDetails = () => {
 
             <div className="flex gap-4">
 
-              <button className="flex-1 bg-green-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
-                <FaPhone />
-                Call
-              </button>
+              <button
+  onClick={() => toast.success("Call Logged Successfully")}
+  className="flex-1 bg-green-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
+>
+  <FaPhone />
+  Call
+</button>
 
-              <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
-                <FaCommentDots />
-                Text
-              </button>
+              <button
+  onClick={() => toast.success("Text Logged Successfully")}
+  className="flex-1 bg-blue-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
+>
+  <FaCommentDots />
+  Text
+</button>
 
-              <button className="flex-1 bg-purple-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
-                <FaVideo />
-                Video
-              </button>
+              <button
+  onClick={() => toast.success("Video Logged Successfully")}
+  className="flex-1 bg-purple-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
+>
+  <FaVideo />
+  Video
+</button>
 
             </div>
 

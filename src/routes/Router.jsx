@@ -1,3 +1,4 @@
+import NotFound from "../pages/NotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Timeline from "../pages/Timeline";
@@ -12,6 +13,7 @@ export default function Router() {
         <Route path="/friend/:id" element={<FriendDetails />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/stats" element={<Stats />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
