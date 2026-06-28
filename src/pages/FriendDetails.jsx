@@ -1,152 +1,186 @@
-// 
-
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
-  FaPhoneAlt,
-  FaComment,
+  FaPhone,
+  FaCommentDots,
   FaVideo,
+  FaClock,
   FaArchive,
   FaTrash,
+  FaEdit,
 } from "react-icons/fa";
 
 const FriendDetails = () => {
+  const { id } = useParams();
+
+  const [friend, setFriend] = useState(null);
+
+  useEffect(() => {
+    fetch("/friends.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const selectedFriend = data.find(
+          (item) => item.id === Number(id)
+        );
+
+        setFriend(selectedFriend);
+      });
+  }, [id]);
+
+  if (!friend) {
+    return (
+      <div className="text-center py-20 text-xl">
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-6xl mx-auto py-12 px-6">
+    <div className="max-w-7xl mx-auto py-10 px-6">
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-8">
 
-        {/* Left */}
-        <div>
+        {/* Left Side */}
+        <div className="bg-white shadow rounded-xl p-6">
 
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <img
+            src={friend.picture}
+            alt={friend.name}
+            className="w-32 h-32 rounded-full mx-auto"
+          />
 
-            <img
-              src="https://i.pravatar.cc/120?img=5"
-              className="w-20 h-20 rounded-full mx-auto"
-            />
+          <h2 className="text-2xl font-bold text-center mt-4">
+            {friend.name}
+          </h2>
 
-            <h2 className="font-bold mt-3">
-              Emma Wilson
-            </h2>
+          <p className="text-center text-gray-500">
+            {friend.email}
+          </p>
 
-            <span className="text-xs bg-red-100 text-red-600 px-3 py-1 rounded-full">
-              Overdue
-            </span>
-
-            <div className="mt-2">
-              <span className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">
-                Friend
+          <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {friend.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-gray-100 px-3 py-1 rounded-full text-sm"
+              >
+                #{tag}
               </span>
-            </div>
+            ))}
+          </div>
 
-            <p className="italic text-gray-500 mt-4 text-sm">
-              "Former colleague, great mentor"
-            </p>
+          <span
+            className={`block text-center mt-4 px-3 py-2 rounded-full ${
+              friend.status === "overdue"
+                ? "bg-red-100 text-red-700"
+                : friend.status === "almost due"
+                ? "bg-yellow-100 text-yellow-700"
+                : "bg-green-100 text-green-700"
+            }`}
+          >
+            {friend.status}
+          </span>
 
-            <p className="text-xs text-gray-400 mt-1">
-              Preferred: email
-            </p>
+          <p className="mt-5 text-gray-600">
+            {friend.bio}
+          </p>
+
+          <div className="space-y-3 mt-8">
+
+            <button className="w-full bg-yellow-100 py-3 rounded-lg flex justify-center items-center gap-2">
+              <FaClock />
+              Snooze 2 Weeks
+            </button>
+
+            <button className="w-full bg-gray-200 py-3 rounded-lg flex justify-center items-center gap-2">
+              <FaArchive />
+              Archive
+            </button>
+
+            <button className="w-full bg-red-100 text-red-600 py-3 rounded-lg flex justify-center items-center gap-2">
+              <FaTrash />
+              Delete
+            </button>
 
           </div>
 
-          <button className="w-full mt-3 border rounded py-3 text-sm">
-            Snooze 2 Weeks
-          </button>
-
-          <button className="w-full mt-3 border rounded py-3 text-sm flex justify-center items-center gap-2">
-            <FaArchive />
-            Archive
-          </button>
-
-          <button className="w-full mt-3 border rounded py-3 text-red-500 flex justify-center items-center gap-2">
-            <FaTrash />
-            Delete
-          </button>
-
         </div>
 
-        {/* Right */}
+        {/* Right Side */}
+        <div className="md:col-span-2 space-y-6">
 
-        <div className="md:col-span-2">
+          {/* Stats */}
+          <div className="grid md:grid-cols-3 gap-4">
 
-          <div className="grid grid-cols-3 gap-4">
-
-            <div className="bg-white shadow rounded-lg p-6 text-center">
+            <div className="bg-white shadow rounded-xl p-6 text-center">
               <h2 className="text-3xl font-bold text-[#244D3F]">
-                62
+                {friend.days_since_contact}
               </h2>
 
-              <p className="text-gray-500 text-sm">
-                Days Since Contact
-              </p>
+              <p>Days Since Contact</p>
             </div>
 
-            <div className="bg-white shadow rounded-lg p-6 text-center">
+            <div className="bg-white shadow rounded-xl p-6 text-center">
               <h2 className="text-3xl font-bold text-[#244D3F]">
-                30
+                {friend.goal}
               </h2>
 
-              <p className="text-gray-500 text-sm">
-                Goal (Days)
-              </p>
+              <p>Goal</p>
             </div>
 
-            <div className="bg-white shadow rounded-lg p-6 text-center">
+            <div className="bg-white shadow rounded-xl p-6 text-center">
               <h2 className="text-xl font-bold text-[#244D3F]">
-                Feb 27, 2026
+                {friend.next_due_date}
               </h2>
 
-              <p className="text-gray-500 text-sm">
-                Next Due
-              </p>
+              <p>Next Due Date</p>
             </div>
 
           </div>
 
           {/* Goal */}
-
-          <div className="bg-white shadow rounded-lg p-6 mt-5">
+          <div className="bg-white shadow rounded-xl p-6">
 
             <div className="flex justify-between">
 
-              <h2 className="font-semibold">
+              <h2 className="text-2xl font-bold">
                 Relationship Goal
               </h2>
 
-              <button className="border rounded px-3 text-sm">
+              <button className="flex items-center gap-2 text-[#244D3F]">
+                <FaEdit />
                 Edit
               </button>
 
             </div>
 
-            <p className="text-gray-600 mt-3">
-              Connect every 30 days
+            <p className="mt-4 text-gray-600">
+              Contact every {friend.goal} days.
             </p>
 
           </div>
 
-          {/* Quick Check */}
+          {/* Quick Check In */}
+          <div className="bg-white shadow rounded-xl p-6">
 
-          <div className="bg-white shadow rounded-lg p-6 mt-5">
-
-            <h2 className="font-semibold mb-4">
+            <h2 className="text-2xl font-bold mb-5">
               Quick Check-In
             </h2>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="flex gap-4">
 
-              <button className="border rounded-lg py-6 flex flex-col items-center gap-2 hover:bg-gray-50">
-                <FaPhoneAlt />
-                <span>Call</span>
+              <button className="flex-1 bg-green-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
+                <FaPhone />
+                Call
               </button>
 
-              <button className="border rounded-lg py-6 flex flex-col items-center gap-2 hover:bg-gray-50">
-                <FaComment />
-                <span>Text</span>
+              <button className="flex-1 bg-blue-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
+                <FaCommentDots />
+                Text
               </button>
 
-              <button className="border rounded-lg py-6 flex flex-col items-center gap-2 hover:bg-gray-50">
+              <button className="flex-1 bg-purple-600 text-white py-3 rounded-lg flex justify-center items-center gap-2">
                 <FaVideo />
-                <span>Video</span>
+                Video
               </button>
 
             </div>

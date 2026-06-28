@@ -1,7 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FriendModal from "./FriendModal";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -179,10 +178,7 @@ const Home = () => {
           </div>
         </div>
 
-        <FriendModal
-          friend={selectedFriend}
-          onClose={() => setSelectedFriend(null)}
-        />
+        
       </div>
 
       <Footer />
