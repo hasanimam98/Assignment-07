@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "name": "Emma Wilson",
+    "picture": "https://i.pravatar.cc/300?img=5",
+    "email": "emma@example.com",
+    "days_since_contact": 62,
+    "status": "overdue",
+    "tags": ["work", "mentor"],
+    "bio": "Former colleague and mentor.",
+    "goal": 30,
+    "next_due_date": "2026-02-20"
+  },
+    {
+    "id": 2,
+    "name": "David Kim",
+    "picture": "https://i.pravatar.cc/300?img=12",
+    "email": "david@example.com",
+    "days_since_contact": 10,
+    "status": "on-track",
+    "tags": ["college", "friend"],
+    "bio": "University friend.",
+    "goal": 30,
+    "next_due_date": "2026-07-10"
+  },
+  {
+    "id": 3,
+    "name": "Lisa Ray",
+    "picture": "https://i.pravatar.cc/300?img=20",
+    "email": "lisa@example.com",
+    "days_since_contact": 25,
+    "status": "almost due",
+    "tags": ["hiking", "bestie"],
+    "bio": "Hiking partner.",
+    "goal": 30,
+    "next_due_date": "2026-06-30"
+  },
+  {
+  "id": 4,
+  "name": "James Wright",
+  "picture": "https://i.pravatar.cc/300?img=15",
+  "email": "james@example.com",
+  "days_since_contact": 45,
+  "status": "overdue",
+  "tags": ["work", "manager"],
+  "bio": "Former project manager.",
+  "goal": 30,
+  "next_due_date": "2026-02-15"
+},
+{
+  "id": 5,
+  "name": "Sophia Lee",
+  "picture": "https://i.pravatar.cc/300?img=30",
+  "email": "sophia@example.com",
+  "days_since_contact": 8,
+  "status": "on-track",
+  "tags": ["family", "cousin"],
+  "bio": "Lives in New York.",
+  "goal": 30,
+  "next_due_date": "2026-07-20"
+},
+{
+  "id": 6,
+  "name": "Michael Brown",
+  "picture": "https://i.pravatar.cc/300?img=18",
+  "email": "michael@example.com",
+  "days_since_contact": 28,
+  "status": "almost due",
+  "tags": ["gym", "friend"],
+  "bio": "Gym partner for 5 years.",
+  "goal": 30,
+  "next_due_date": "2026-06-28"
+}
+,
+{
+  "id": 7,
+  "name": "Olivia Carter",
+  "picture": "https://i.pravatar.cc/300?img=25",
+  "email": "olivia@example.com",
+  "days_since_contact": 15,
+  "status": "on-track",
+  "tags": ["school", "friend"],
+  "bio": "High school friend who enjoys traveling and photography.",
+  "goal": 30,
+  "next_due_date": "2026-07-15"
+},
+{
+  "id": 8,
+  "name": "Daniel Harris",
+  "picture": "https://i.pravatar.cc/300?img=33",
+  "email": "daniel@example.com",
+  "days_since_contact": 38,
+  "status": "almost due",
+  "tags": ["office", "teammate"],
+  "bio": "Worked together on multiple software projects.",
+  "goal": 30,
+  "next_due_date": "2026-07-02"
+},
+{
+  "id": 9,
+  "name": "Ava Thompson",
+  "picture": "https://i.pravatar.cc/300?img=47",
+  "email": "ava@example.com",
+  "days_since_contact": 74,
+  "status": "overdue",
+  "tags": ["family", "cousin"],
+  "bio": "Cousin living abroad. We usually catch up every month.",
+  "goal": 30,
+  "next_due_date": "2026-06-15"
+}
+]
