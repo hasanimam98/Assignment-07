@@ -1,78 +1,86 @@
 import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FriendModal from "./FriendModal";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-const friends = [
-  {
-    id: 1,
-    name: "David Kim",
-    email: "david@example.com",
-    status: "On Track",
-    color: "bg-green-100 text-green-700",
-    image: "https://i.pravatar.cc/150?img=12",
-  },
-  {
-    id: 2,
-    name: "Emma Wilson",
-    email: "emma@example.com",
-    status: "Overdue",
-    color: "bg-red-100 text-red-700",
-    image: "https://i.pravatar.cc/150?img=5",
-  },
-  {
-    id: 3,
-    name: "Lisa Nakamura",
-    email: "lisa@example.com",
-    status: "On Track",
-    color: "bg-green-100 text-green-700",
-    image: "https://i.pravatar.cc/150?img=32",
-  },
-  {
-    id: 4,
-    name: "James Wright",
-    email: "james@example.com",
-    status: "Almost Due",
-    color: "bg-yellow-100 text-yellow-700",
-    image: "https://i.pravatar.cc/150?img=15",
-  },
-  {
-    id: 5,
-    name: "David Kim",
-    email: "david@example.com",
-    status: "On Track",
-    color: "bg-green-100 text-green-700",
-    image: "https://i.pravatar.cc/150?img=11",
-  },
-  {
-    id: 6,
-    name: "Emma Wilson",
-    email: "emma@example.com",
-    status: "Overdue",
-    color: "bg-red-100 text-red-700",
-    image: "https://i.pravatar.cc/150?img=9",
-  },
-  {
-    id: 7,
-    name: "Lisa Nakamura",
-    email: "lisa@example.com",
-    status: "On Track",
-    color: "bg-green-100 text-green-700",
-    image: "https://i.pravatar.cc/150?img=20",
-  },
-  {
-    id: 8,
-    name: "James Wright",
-    email: "james@example.com",
-    status: "Almost Due",
-    color: "bg-yellow-100 text-yellow-700",
-    image: "https://i.pravatar.cc/150?img=25",
-  },
-];
+// const friends = [
+//   {
+//     id: 1,
+//     name: "David Kim",
+//     email: "david@example.com",
+//     status: "On Track",
+//     color: "bg-green-100 text-green-700",
+//     image: "https://i.pravatar.cc/150?img=12",
+//   },
+//   {
+//     id: 2,
+//     name: "Emma Wilson",
+//     email: "emma@example.com",
+//     status: "Overdue",
+//     color: "bg-red-100 text-red-700",
+//     image: "https://i.pravatar.cc/150?img=5",
+//   },
+//   {
+//     id: 3,
+//     name: "Lisa Nakamura",
+//     email: "lisa@example.com",
+//     status: "On Track",
+//     color: "bg-green-100 text-green-700",
+//     image: "https://i.pravatar.cc/150?img=32",
+//   },
+//   {
+//     id: 4,
+//     name: "James Wright",
+//     email: "james@example.com",
+//     status: "Almost Due",
+//     color: "bg-yellow-100 text-yellow-700",
+//     image: "https://i.pravatar.cc/150?img=15",
+//   },
+//   {
+//     id: 5,
+//     name: "David Kim",
+//     email: "david@example.com",
+//     status: "On Track",
+//     color: "bg-green-100 text-green-700",
+//     image: "https://i.pravatar.cc/150?img=11",
+//   },
+//   {
+//     id: 6,
+//     name: "Emma Wilson",
+//     email: "emma@example.com",
+//     status: "Overdue",
+//     color: "bg-red-100 text-red-700",
+//     image: "https://i.pravatar.cc/150?img=9",
+//   },
+//   {
+//     id: 7,
+//     name: "Lisa Nakamura",
+//     email: "lisa@example.com",
+//     status: "On Track",
+//     color: "bg-green-100 text-green-700",
+//     image: "https://i.pravatar.cc/150?img=20",
+//   },
+//   {
+//     id: 8,
+//     name: "James Wright",
+//     email: "james@example.com",
+//     status: "Almost Due",
+//     color: "bg-yellow-100 text-yellow-700",
+//     image: "https://i.pravatar.cc/150?img=25",
+//   },
+// ];
 
 const Home = () => {
+  const [friends, setFriends] = useState([]);
   const [selectedFriend, setSelectedFriend] = useState(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+  fetch("/friends.json")
+    .then((res) => res.json())
+    .then((data) => setFriends(data));
+}, []);
 
   return (
     <>
@@ -128,12 +136,12 @@ const Home = () => {
           <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-6">
             {friends.map((friend) => (
               <div
-                key={friend.id}
-                onClick={() => setSelectedFriend(friend)}
-                className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition"
-              >
+  key={friend.id}
+  onClick={() => navigate(`/friend/${friend.id}`)}
+  className="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition"
+>
                 <img
-                  src={friend.image}
+                  src={friend.picture}
                   alt={friend.name}
                   className="w-20 h-20 rounded-full mx-auto object-cover"
                 />
@@ -141,11 +149,30 @@ const Home = () => {
                 <h3 className="mt-4 font-bold text-lg">{friend.name}</h3>
 
                 <p className="text-gray-500 text-sm">{friend.email}</p>
+                <p className="text-sm text-gray-500 mt-2">
+  Days Since Contact: {friend.days_since_contact}
+</p>
+<div className="flex flex-wrap justify-center gap-2 mt-3">
+  {friend.tags.map((tag, index) => (
+    <span
+      key={index}
+      className="bg-gray-100 px-2 py-1 rounded text-xs"
+    >
+      #{tag}
+    </span>
+  ))}
+</div>
 
                 <span
-                  className={`inline-block mt-4 px-3 py-1 rounded-full text-xs font-semibold ${friend.color}`}
-                >
-                  {friend.status}
+                   className={`inline-block mt-4 px-3 py-1 rounded-full text-xs font-semibold ${
+    friend.status === "overdue"
+      ? "bg-red-100 text-red-700"
+      : friend.status === "almost due"
+      ? "bg-yellow-100 text-yellow-700"
+      : "bg-green-100 text-green-700"
+  }`}
+>
+  {friend.status}
                 </span>
               </div>
             ))}
