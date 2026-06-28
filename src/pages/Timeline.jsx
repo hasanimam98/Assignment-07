@@ -1,90 +1,118 @@
-
 import { useEffect, useState } from "react";
+import { FaPhone, FaCommentDots, FaVideo } from "react-icons/fa";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-function Timeline() {
+const Timeline = () => {
   const [timeline, setTimeline] = useState([]);
   const [filter, setFilter] = useState("All");
 
   useEffect(() => {
-    const stored =
+    const data =
       JSON.parse(localStorage.getItem("timeline")) || [];
 
-    setTimeline(stored.reverse());
+    setTimeline(data);
   }, []);
 
-  const filteredData =
+  const filteredTimeline =
     filter === "All"
       ? timeline
       : timeline.filter((item) => item.type === filter);
 
   return (
-    <div>
+    <>
       <Navbar />
 
-      <div className="max-w-5xl mx-auto p-6">
-        <h1 className="text-4xl font-bold mb-6">
+      <div className="max-w-5xl mx-auto py-10 px-6">
+
+        <h1 className="text-4xl font-bold mb-8">
           Timeline
         </h1>
 
         {/* Filter Buttons */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex gap-3 mb-8">
+
           <button
             onClick={() => setFilter("All")}
-            className="px-4 py-2 border rounded"
+            className="px-4 py-2 bg-gray-200 rounded-lg"
           >
             All
           </button>
 
           <button
             onClick={() => setFilter("Call")}
-            className="px-4 py-2 bg-green-500 text-white rounded"
+            className="px-4 py-2 bg-green-600 text-white rounded-lg"
           >
             Call
           </button>
 
           <button
             onClick={() => setFilter("Text")}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
             Text
           </button>
 
           <button
             onClick={() => setFilter("Video")}
-            className="px-4 py-2 bg-purple-500 text-white rounded"
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg"
           >
             Video
           </button>
+
         </div>
 
-        {filteredData.length === 0 ? (
-          <p>No timeline entries yet.</p>
+        {filteredTimeline.length === 0 ? (
+          <div className="bg-white shadow rounded-xl p-8 text-center">
+            <h2 className="text-xl font-semibold">
+              No interactions yet.
+            </h2>
+          </div>
         ) : (
-          <div className="space-y-4">
-            {filteredData.map((item) => (
+          <div className="space-y-5">
+
+            {filteredTimeline.map((item) => (
+
               <div
                 key={item.id}
-                className="border rounded-xl p-4 shadow"
+                className="bg-white shadow rounded-xl p-5 flex items-center gap-5"
               >
-                <h2 className="font-semibold text-lg">
-                  {item.title}
-                </h2>
 
-                <p className="text-gray-500">
-                  {item.date}
-                </p>
+                <div className="text-3xl text-[#244D3F]">
 
-                <span className="inline-block mt-2 px-3 py-1 bg-gray-100 rounded-full text-sm">
-                  {item.type}
-                </span>
+                  {item.type === "Call" && <FaPhone />}
+
+                  {item.type === "Text" && <FaCommentDots />}
+
+                  {item.type === "Video" && <FaVideo />}
+
+                </div>
+
+                <div>
+
+                  <h2 className="text-lg font-bold">
+                    {item.title}
+                  </h2>
+
+                  <p className="text-gray-500">
+                    {item.date}
+                  </p>
+
+                </div>
+
               </div>
+
             ))}
+
           </div>
         )}
+
       </div>
-    </div>
+
+      <Footer />
+
+    </>
   );
-}
+};
 
 export default Timeline;

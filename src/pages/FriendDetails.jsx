@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -24,10 +23,29 @@ const FriendDetails = () => {
         const selectedFriend = data.find(
           (item) => item.id === Number(id)
         );
-
         setFriend(selectedFriend);
       });
   }, [id]);
+
+  // Timeline Function
+  const addTimeline = (type) => {
+    const oldTimeline =
+      JSON.parse(localStorage.getItem("timeline")) || [];
+
+    const newEntry = {
+      id: Date.now(),
+      type,
+      title: `${type} with ${friend.name}`,
+      date: new Date().toLocaleDateString(),
+    };
+
+    localStorage.setItem(
+      "timeline",
+      JSON.stringify([newEntry, ...oldTimeline])
+    );
+
+    toast.success(`${type} Logged Successfully`);
+  };
 
   if (!friend) {
     return (
@@ -117,7 +135,6 @@ const FriendDetails = () => {
               <h2 className="text-3xl font-bold text-[#244D3F]">
                 {friend.days_since_contact}
               </h2>
-
               <p>Days Since Contact</p>
             </div>
 
@@ -125,15 +142,13 @@ const FriendDetails = () => {
               <h2 className="text-3xl font-bold text-[#244D3F]">
                 {friend.goal}
               </h2>
-
-              <p>Goal</p>
+              <p>Goal (Days)</p>
             </div>
 
             <div className="bg-white shadow rounded-xl p-6 text-center">
               <h2 className="text-xl font-bold text-[#244D3F]">
                 {friend.next_due_date}
               </h2>
-
               <p>Next Due Date</p>
             </div>
 
@@ -142,7 +157,7 @@ const FriendDetails = () => {
           {/* Goal */}
           <div className="bg-white shadow rounded-xl p-6">
 
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
 
               <h2 className="text-2xl font-bold">
                 Relationship Goal
@@ -156,43 +171,43 @@ const FriendDetails = () => {
             </div>
 
             <p className="mt-4 text-gray-600">
-              Contact every {friend.goal} days.
+              Contact every <b>{friend.goal}</b> days to keep the relationship healthy.
             </p>
 
           </div>
 
-          {/* Quick Check In */}
+          {/* Quick Check-In */}
           <div className="bg-white shadow rounded-xl p-6">
 
             <h2 className="text-2xl font-bold mb-5">
               Quick Check-In
             </h2>
 
-            <div className="flex gap-4">
+            <div className="grid grid-cols-3 gap-4">
 
               <button
-  onClick={() => toast.success("Call Logged Successfully")}
-  className="flex-1 bg-green-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
->
-  <FaPhone />
-  Call
-</button>
+                onClick={() => addTimeline("Call")}
+                className="bg-green-600 text-white py-3 rounded-lg flex justify-center items-center gap-2 hover:bg-green-700"
+              >
+                <FaPhone />
+                Call
+              </button>
 
               <button
-  onClick={() => toast.success("Text Logged Successfully")}
-  className="flex-1 bg-blue-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
->
-  <FaCommentDots />
-  Text
-</button>
+                onClick={() => addTimeline("Text")}
+                className="bg-blue-600 text-white py-3 rounded-lg flex justify-center items-center gap-2 hover:bg-blue-700"
+              >
+                <FaCommentDots />
+                Text
+              </button>
 
               <button
-  onClick={() => toast.success("Video Logged Successfully")}
-  className="flex-1 bg-purple-600 text-white py-3 rounded-lg flex justify-center items-center gap-2"
->
-  <FaVideo />
-  Video
-</button>
+                onClick={() => addTimeline("Video")}
+                className="bg-purple-600 text-white py-3 rounded-lg flex justify-center items-center gap-2 hover:bg-purple-700"
+              >
+                <FaVideo />
+                Video
+              </button>
 
             </div>
 
