@@ -29,7 +29,7 @@ const Timeline = () => {
           Timeline
         </h1>
 
-        {/* Filter Buttons */}
+        {/* Filter */}
         <div className="flex gap-3 mb-8">
 
           <button

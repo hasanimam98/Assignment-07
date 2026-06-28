@@ -20,6 +20,9 @@ const callCount = timeline.filter(
 const textCount = timeline.filter(
   (item) => item.type === "Text"
 ).length;
+const videoCount = timeline.filter(
+  (item) => item.type === "Video"
+).length;
 
 const data = [
   {

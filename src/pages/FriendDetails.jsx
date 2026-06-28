@@ -27,7 +27,7 @@ const FriendDetails = () => {
       });
   }, [id]);
 
-  // Timeline Function
+  
   const addTimeline = (type) => {
     const oldTimeline =
       JSON.parse(localStorage.getItem("timeline")) || [];
@@ -60,7 +60,7 @@ const FriendDetails = () => {
 
       <div className="grid md:grid-cols-3 gap-8">
 
-        {/* Left Side */}
+        
         <div className="bg-white shadow rounded-xl p-6">
 
           <img
@@ -125,10 +125,10 @@ const FriendDetails = () => {
 
         </div>
 
-        {/* Right Side */}
+        
         <div className="md:col-span-2 space-y-6">
 
-          {/* Stats */}
+          
           <div className="grid md:grid-cols-3 gap-4">
 
             <div className="bg-white shadow rounded-xl p-6 text-center">
@@ -154,7 +154,7 @@ const FriendDetails = () => {
 
           </div>
 
-          {/* Goal */}
+          
           <div className="bg-white shadow rounded-xl p-6">
 
             <div className="flex justify-between items-center">
@@ -176,7 +176,7 @@ const FriendDetails = () => {
 
           </div>
 
-          {/* Quick Check-In */}
+         
           <div className="bg-white shadow rounded-xl p-6">
 
             <h2 className="text-2xl font-bold mb-5">

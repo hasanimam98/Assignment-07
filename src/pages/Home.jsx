@@ -96,7 +96,7 @@ if (loading) {
       <Navbar />
 
       <div className="max-w-7xl mx-auto py-12 px-6">
-        {/* Hero */}
+        {/* Hero  */}
         <div className="text-center">
           <h1 className="text-5xl font-bold text-gray-800">
             Friends to keep close in your life
@@ -113,7 +113,7 @@ if (loading) {
           </button>
         </div>
 
-        {/* Stats */}
+        {/* Stats  */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
           <div className="bg-white rounded-xl shadow p-6 text-center">
             <h2 className="text-3xl font-bold text-[#244D3F]">10</h2>
@@ -138,7 +138,7 @@ if (loading) {
           </div>
         </div>
 
-        {/* Friend Section */}
+        
         <div className="mt-14">
           <h2 className="text-2xl font-bold mb-8">Your Friends</h2>
 

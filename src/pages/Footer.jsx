@@ -4,16 +4,16 @@ const Footer = () => {
   return (
     <footer className="bg-[#244D3F] text-white mt-16">
       <div className="max-w-7xl mx-auto py-14 px-6 text-center">
-        {/* Logo */}
+       
         <h2 className="text-5xl font-bold mb-3">KeenKeeper</h2>
 
-        {/* Description */}
+        
         <p className="text-gray-300 text-sm mb-8">
           Your personal CRM of meaningful connections. Browse, blend, and
           nurture the relationships that matter most.
         </p>
 
-        {/* Social Links */}
+        
         <div className="mb-8">
           <p className="text-sm text-gray-300 mb-3">Social Links</p>
 
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Row */}
+       
         <div className="border-t border-green-700 pt-5 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300">
           <p>© 2025 KeenKeeper. All rights reserved.</p>
 

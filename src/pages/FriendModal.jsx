@@ -5,7 +5,7 @@ const FriendModal = ({ friend, onClose }) => {
     <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
       <div className="bg-white rounded-xl shadow-xl w-[800px] p-8 relative">
 
-        {/* Close Button */}
+        
         <button
           onClick={onClose}
           className="absolute top-5 right-5 text-2xl font-bold text-gray-500 hover:text-black"
@@ -15,7 +15,7 @@ const FriendModal = ({ friend, onClose }) => {
 
         <div className="flex gap-8">
 
-          {/* Left Profile Card */}
+          
           <div className="w-1/3 border rounded-xl p-6 text-center">
 
             <img
@@ -40,11 +40,10 @@ const FriendModal = ({ friend, onClose }) => {
 
           </div>
 
-          {/* Right Side */}
-          {/* Right Side */}
+          
 <div className="flex-1">
 
-  {/* Stats */}
+  
   <div className="grid grid-cols-3 gap-4">
 
     <div className="bg-gray-50 border rounded-xl p-5 text-center">
@@ -72,7 +71,7 @@ const FriendModal = ({ friend, onClose }) => {
 
   </div>
 
-  {/* Relationship Goal */}
+ 
   <div className="mt-6 border rounded-xl p-5">
 
     <div className="flex justify-between items-center">
@@ -91,7 +90,7 @@ const FriendModal = ({ friend, onClose }) => {
 
   </div>
 
-  {/* Quick Check-In */}
+  
   <div className="mt-6 border rounded-xl p-5">
 
     <h2 className="font-semibold text-lg mb-5">

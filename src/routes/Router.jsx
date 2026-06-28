@@ -1,9 +1,10 @@
-import NotFound from "../pages/NotFound";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Timeline from "../pages/Timeline";
 import Stats from "../pages/Stats";
 import FriendDetails from "../pages/FriendDetails";
+import NotFound from "../pages/NotFound";
 
 export default function Router() {
   return (
